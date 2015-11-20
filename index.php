@@ -973,7 +973,7 @@
 		// $category = $brain_CategoryDB->getCategory();
 
 		// header('location:.?action=brain_player');
-		header("location:.?action=brain_player&rid=".urlencode($rooms_id) . "&room_num=".urlencode($room_num) . "&user_id=".urlencode($user_id) . "&player_type=".urlencode($player_type));
+		header("location:.?action=brain_player&rid=".urlencode($_SESSION['room_id']) . "&room_num=".urlencode($room_num) . "&user_id=".urlencode($_SESSION['user_id']) . "&player_type=".urlencode($player_type));
 		// include './view/brain_player.php';
 	} elseif ($action == 'brain_profile') {
 
