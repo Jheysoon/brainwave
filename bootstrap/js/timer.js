@@ -35,7 +35,7 @@ var counter=setInterval(timer, 1000);
         } 
       
       clearInterval(counter);
-       document.getElementById("sub").disabled = true;
+       //document.getElementById("sub").disabled = true;
 
       // $("#pagination").click(function(){});
       $('#pagination').trigger('click');
@@ -44,13 +44,13 @@ var counter=setInterval(timer, 1000);
     
      --count;
 
-    document.getElementById("sub").onclick = function() {
-      document.getElementById("correct").disabled = true;
-      document.getElementById("test2").disabled = true;
-      document.getElementById("test3").disabled = true;
-      document.getElementById("test4").disabled = true;
-
-      
-
-    }
+    // document.getElementById("sub").onclick = function() {
+    //   document.getElementById("correct").disabled = true;
+    //   document.getElementById("test2").disabled = true;
+    //   document.getElementById("test3").disabled = true;
+    //   document.getElementById("test4").disabled = true;
+    // 
+    //   
+    // 
+    // }
   }

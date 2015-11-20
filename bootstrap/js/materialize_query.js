@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('.parallax').parallax();
 
     $("#Start").on('click', function(){
-        alert('you clicked me!');
+        //alert('you clicked me!');
     });
     
     $('#container').on( "click", '#Start', function(e){
@@ -109,7 +109,7 @@ $(document).ready(function() {
             }
         });
 
-document.getElementById("sub").disabled = true;
+//document.getElementById("sub").disabled = true;
 
 
 
