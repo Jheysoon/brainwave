@@ -19,7 +19,7 @@
 				$("#submit").click(function() {
 					var textcontent = $("#category").val();
 					var dataString = 'category='+ textcontent;
-								
+
 								$("#flash").show();
 								$("#flash").fadeIn(400).html('<span class="load">Loading..</span>');
 								$.ajax({
@@ -32,16 +32,15 @@
 								document.getElementById('category').value='';
 								$("#flash").hide();
 								$("#content").focus();
-								}  
+								}
 							});
-						}
 					return false;
 				});
 		});
 
 
 		(function() {
-	
+
 				function init() {
 					var speed = 300,
 						easing = mina.backout;
@@ -66,9 +65,3 @@
 				init();
 
 			})();
-
-
-
- 
-
-
