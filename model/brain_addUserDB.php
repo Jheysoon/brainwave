@@ -1,7 +1,9 @@
 <?php 
-	class brain_UserDB{
+	class brain_UserDB
+	{
 
-		public function brain_addDB($brain_User){
+		public function brain_addDB($brain_User)
+		{
 			$pdo = Database::getDB();
 
 			$user_id = $brain_User->getUser_id();
@@ -24,7 +26,9 @@
 			$stmt = $pdo->prepare("INSERT INTO register SET user_id = ?, user_path = ?, lname = ?, fname = ?, middlename = ?, address = ?, contact = ?, age = ?, gender = ?, bday = ?, username = ?, password = password(?), usertype = ?, date_reg = ?");
 			$stmt->execute(array($user_id,$acc_path,$lname,$fname,$mname,$address,$contact,$age,$gender,$dob,$username,$password,$usertype,$date));
 		}
-		public function brain_updateDB($brain_User){
+		
+		public function brain_updateDB($brain_User)
+		{
 			$pdo = Database::getDB();
 
 			$user_id = $brain_User->getUser_id();
@@ -47,7 +51,9 @@
 			$stmt = $pdo->prepare("UPDATE register SET user_path = ?, lname = ?, fname = ?, middlename = ?, address = ?, contact = ?, age = ?, gender = ?, bday = ?, username = ?, password = password(?), usertype = ?, date_reg = ? WHERE user_id = ?");
 			$stmt->execute(array($acc_path,$lname,$fname,$mname,$address,$contact,$age,$gender,$dob,$username,$password,$usertype,$date,$user_id ));
 		}
-		public function verify_brainLogin($brain_User){
+		
+		public function verify_brainLogin($brain_User)
+		{
 			$pdo = Database::getDB();
 			$stmt = $pdo->prepare("SELECT * FROM register WHERE username = ? AND password = password(?) ");
 			$user_id = $brain_User->getUser_id();
@@ -59,7 +65,9 @@
 
 			return $verified_brainLogin;
 		}
-		public function brain_user_info($brain_User){
+		
+		public function brain_user_info($brain_User)
+		{
 			$pdo = Database::getDB();
 
 			$stmt = $pdo->prepare("SELECT * FROM register where username = ? AND password = password(?)");
@@ -78,7 +86,8 @@
 	        return $brain_User;
 		}
 
-		public function getUserLogs($user){
+		public function getUserLogs($user)
+		{
 			$pdo = Database::getDB();
 
 			$stmt = $pdo->prepare("SELECT * FROM register WHERE usertype = ? ORDER by uid DESC");
@@ -105,7 +114,8 @@
 			return $brain_log;
 		}
 
-		public function getRegisters($utype){
+		public function getRegisters($utype)
+		{
 			$pdo = Database::getDB();
 
 			$stmt = $pdo->prepare("SELECT * FROM register WHERE usertype = ?");
@@ -131,7 +141,9 @@
 			}
 			return $brain_log;
 		}
-		public function brain_getUser($user){
+		
+		public function brain_getUser($user)
+		{
 			$pdo = Database::getDB();
 			$stmt = $pdo->prepare("SELECT * FROM register WHERE username = ?");
 			$stmt->execute(array($user));
@@ -155,7 +167,9 @@
 	          	        
 			return $brain_User;
 		}
-		public function getUsername($user_id){
+		
+		public function getUsername($user_id)
+		{
 			$pdo = Database::getDB();
 			$stmt = $pdo->prepare("SELECT * FROM register WHERE user_id = ?");
 			$stmt->execute(array($user_id));
@@ -177,7 +191,9 @@
 			return $brain_User;
 
 		}
-		public function verify_user($brain_User){
+		
+		public function verify_user($brain_User)
+		{
 			$pdo = Database::getDB();
 
 			$lname = $brain_User->getLname();
@@ -190,7 +206,9 @@
 
 			return $duplicate_user;
 		}
-		public function getProfile($user_id){
+		
+		public function getProfile($user_id)
+		{
 			$pdo = Database::getDB();
 			$stmt = $pdo->prepare("SELECT * FROM register WHERE user_id = ?");
 			$stmt->execute(array($user_id));
