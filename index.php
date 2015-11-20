@@ -2,8 +2,19 @@
 	session_start();
 	date_default_timezone_set('Asia/Manila');
 	setlocale(LC_MONETARY, 'en_US');
+	
+	if (isset($_POST['action'])) {
+		$action = $_POST['action'];
+	} elseif (isset($_GET['action'])) {
+		$action = $_GET['action'];
+	} else {
+		$action = 'login_form';
+	}
 
-	require './view/header.php';
+	if ($action != 'checkPlayer') {
+		require './view/header.php';
+	}
+	
 	require './model/database.php';
 
 	require './model/brain_addUser.php';
@@ -23,18 +34,15 @@
 
 	require './model/brain_reserveQuestion.php';
 	require './model/brain_reserveQuestionDB.php';
+	require './model/BrainJoinRoom.php';
+	require './model/BrainRoom.php';
+	
 
 	// require './model/brain_Game.php';
 	// require './model/brain_GameDB.php';
 
 
-	if (isset($_POST['action'])) {
-		$action = $_POST['action'];
-	} elseif (isset($_GET['action'])) {
-		$action = $_GET['action'];
-	} else {
-		$action = 'login_form';
-	}
+	
 
 	//--------------------------------------------//
 
@@ -50,6 +58,8 @@
 	$brain_joinRoomDB 			= new brain_joinRoomDB();
 	$brain_reserveQuestion 		= new brain_reserveQuestion();
 	$brain_reserveQuestionDB 	= new brain_reserveQuestionDB();
+	$brainJoinRoom 				= new BrainJoinRoom();
+	$brainRoom 					= new BrainRoom();
 
 	// $brain_room = new brain_Game();
 	// $brain_roomDB = new brain_GameDB();
@@ -65,10 +75,21 @@
 			$error = '';
 		}
 
-		$utype = 'Admin';
-		$registers = $brain_UserDB->getRegisters($utype);
+		$utype 		= 'Admin';
+		$registers 	= $brain_UserDB->getRegisters($utype);
 		include './view/brainwave_login.php';
 
+	} elseif ($action == 'checkPlayer') {
+		
+		$room_id 		= $_POST['room_id'];
+		$getType 		= $brainJoinRoom->getPlayerType($_SESSION['user_id'], $room_id);
+		$ctr 			= $brainJoinRoom->countRoom($room_id);
+		$numOfPlayers 	= $brainRoom->numOfPlayer($room_id);
+		
+		//echo $getType;
+		
+		include './view/checkPlayer.php';
+		
 	} elseif ($action == 'add_user') {
 		$_SESSION['user_id'] 	= $_POST['user_id'];
 		$_SESSION['lname'] 		= ucwords($_POST['lastname']);
@@ -992,4 +1013,8 @@
 		session_destroy();
 		header('location:.');
 	}
-	require './view/footer.php';
+	
+	if ($action != 'checkPlayer') {
+		require './view/footer.php';
+	}
+	
