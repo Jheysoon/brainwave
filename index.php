@@ -836,29 +836,30 @@
 
 		header("location:.?action=brain_joinRooms&rid=".urlencode($rooms_id) . "&room_num=".urlencode($room_num) . "&user_id=".urlencode($user_id) . "&player_type=".urlencode($player_type));
 	} elseif ($action == 'brain_joinRooms') {
-		 $_SESSION['user_id'] = $_GET['user_id'];
-		 $_SESSION['player_type'] = $_GET['player_type'];
-		 $user = $brain_UserDB->getUsername($_SESSION['user_id']);
-		 $username = $user->getUsername();
-		 $_SESSION['user'] = $username;
+		 $_SESSION['user_id'] 		= $_GET['user_id'];
+		 $_SESSION['player_type'] 	= $_GET['player_type'];
+		 $user 						= $brain_UserDB->getUsername($_SESSION['user_id']);
+		 $username 					= $user->getUsername();
+		 $_SESSION['user'] 			= $username;
 
 		if (isset($_SESSION['user'])) {
 			$brain_users = $brain_UserDB->brain_getUser($_SESSION['user']);
 		}
-			$_SESSION['rid'] 		= $_GET['rid'];
-			$_SESSION['room_num']	= $_GET['room_num'];
+		
+		$_SESSION['rid'] 		= $_GET['rid'];
+		$_SESSION['room_num']	= $_GET['room_num'];
 
-			$brain_joinRoom->setJid($_SESSION['rid'] );
-			$brain_joinRoom->setUser_id($_SESSION['user_id']);
-			$brain_joinRoom->setRoom_num($_SESSION['room_num']);
-			$brain_joinRoom->setPlayer_type($_SESSION['player_type']);
+		$brain_joinRoom->setJid($_SESSION['rid'] );
+		$brain_joinRoom->setUser_id($_SESSION['user_id']);
+		$brain_joinRoom->setRoom_num($_SESSION['room_num']);
+		$brain_joinRoom->setPlayer_type($_SESSION['player_type']);
 
-			$brain_room->setRid($_SESSION['rid']);
-			$brain_room->setRoom_id($_SESSION['room_num']);
-			$brain_room->setUser_id($_SESSION['user_id']);
+		$brain_room->setRid($_SESSION['rid']);
+		$brain_room->setRoom_id($_SESSION['room_num']);
+		$brain_room->setUser_id($_SESSION['user_id']);
 
-			$get_Room 	= $brain_roomDB->getBRoom($brain_room);
-			$join_room 	= $brain_joinRoomDB->getJoin_Room($brain_joinRoom);
+		$get_Room 	= $brain_roomDB->getBRoom($brain_room);
+		$join_room 	= $brain_joinRoomDB->getJoin_Room($brain_joinRoom);
 
 			// echo  $_SESSION['user_id'];
 			include './view/brain_joinRoom.php';
