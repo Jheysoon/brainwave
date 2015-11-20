@@ -45,9 +45,7 @@
 
     <!-- jquery must include first before other.. to be able to use jquery functions -->
     <script src="bootstrap/js/jquery.min.js"></script>
-    <script src="bootstrap/js/main.js"></script>
-    <script src="bootstrap/js/chat.js"></script>
-    <script src="bootstrap/js/password.js"></script>
+
       <script src="bootstrap/js/jquery.maskedinput.js"></script>
 
       <script src="bootstrap/js/ajax.js"></script>

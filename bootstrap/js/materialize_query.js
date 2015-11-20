@@ -13,7 +13,9 @@
 
   $(document).ready(function() {
 
-
+    $("#Start").live('click', function(){
+        alert('you clicked me!');
+    });
           $('.tooltipped').tooltip({delay: 50});
      
          $('.modal-trigger').leanModal({
@@ -141,12 +143,6 @@ $(":radio").click(function(){
        //   alert('a_onClick');
        //  }
     // });
-
-     $(document).ready(function() {
-              $("#Start").live('click', function(){
-                alert('you clicked me!');
-            });
-         });
 
     (function($){
         $(function(){
