@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
 
-    $("#Start").live('click', function(){
+    $("#Start").on('click', function(){
         alert('you clicked me!');
     });
     
